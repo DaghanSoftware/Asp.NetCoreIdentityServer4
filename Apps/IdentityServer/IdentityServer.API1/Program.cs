@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, opts => {
-        opts.Authority = "http://localhost:5109";
+        opts.Authority = "https://localhost:7139";
         opts.Audience = "resource_api1";
         });
 builder.Services.AddControllers();
