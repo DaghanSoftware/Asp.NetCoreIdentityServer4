@@ -26,5 +26,28 @@ namespace IdentityServer.AuthServer
                 new ApiScope("api2.update","Api 2 için update izni")
             };
         }
+
+        public static IEnumerable<Client> GetClients()
+        {
+            return new List<Client>
+            {
+                new Client()
+                {
+                    ClientId="Client1",
+                    ClientName="Client 1 app uygulaması",
+                    ClientSecrets=new[] {new Secret("secret".Sha256())},
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    AllowedScopes={"api1.read","api2.write","api2.update"}
+                },
+                new Client()
+                {
+                    ClientId="Client2",
+                    ClientName="Client 2 app uygulaması",
+                    ClientSecrets=new[] {new Secret("secret".Sha256())},
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    AllowedScopes={"api1.read","api2.write","api2.update"}
+                }
+            };
+        }
     }
 }
