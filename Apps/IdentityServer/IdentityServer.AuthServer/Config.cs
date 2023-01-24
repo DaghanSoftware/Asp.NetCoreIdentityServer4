@@ -81,10 +81,11 @@ namespace IdentityServer.AuthServer
                 new Client()
                 {
                     ClientId="Client1-Mvc",
+                    RequirePkce=false,
                     ClientName="Client-1 MVC app uygulaması",
                     ClientSecrets=new[] {new Secret("secret".Sha256())},
                     AllowedGrantTypes = GrantTypes.Hybrid,
-                    RedirectUris=new List<string>{"https://localhost:7218/sign-oidc"},
+                    RedirectUris=new List<string>{"https://localhost:7218/signin-oidc"},
                     AllowedScopes={IdentityServerConstants.StandardScopes.OpenId,IdentityServerConstants.StandardScopes.Profile}
                 }
             };
