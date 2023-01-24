@@ -1,4 +1,6 @@
 ﻿using IdentityServer4.Models;
+using IdentityServer4.Test;
+using System.Security.Claims;
 
 namespace IdentityServer.AuthServer
 {
@@ -27,6 +29,34 @@ namespace IdentityServer.AuthServer
             };
         }
 
+
+        public static IEnumerable<IdentityResource> GetIdentityResources()//profile claims
+        {
+            return new List<IdentityResource>()
+            {
+                new IdentityResources.OpenId(),
+                new IdentityResources.Profile(),
+            };
+        }
+
+        public static IEnumerable<TestUser> GetTestUsers()//Test kullanıcıları
+        {
+            return new List<TestUser>()
+            {
+                new TestUser{SubjectId="1",Username="Elbatra",Password="password",Claims=new List<Claim>()
+                    {
+                        new Claim("given_name","Semih"),
+                        new Claim("family_name","Daghan")
+                    }
+                },
+                new TestUser{SubjectId="2",Username="Eldodi",Password="password",Claims=new List<Claim>()
+                    {
+                        new Claim("given_name","Sea of"),
+                        new Claim("family_name","Thieves")
+                    }
+                }
+            };
+        }
         public static IEnumerable<Client> GetClients()
         {
             return new List<Client>
