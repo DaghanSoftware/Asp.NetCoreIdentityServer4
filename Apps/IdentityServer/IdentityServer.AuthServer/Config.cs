@@ -118,7 +118,7 @@ namespace IdentityServer.AuthServer
                     RedirectUris=new List<string>{"https://localhost:7223/signin-oidc"},
                     PostLogoutRedirectUris=new List<string>{ "https://localhost:7223/signout-callback-oidc" },
                     AllowedScopes={IdentityServerConstants.StandardScopes.OpenId,IdentityServerConstants.StandardScopes.Profile,
-                        "api2.read",IdentityServerConstants.StandardScopes.OfflineAccess,"CountryAndCity","Roles"},
+                        "api1.read","api2.read",IdentityServerConstants.StandardScopes.OfflineAccess,"CountryAndCity","Roles"},
                     AccessTokenLifetime=2*60*60,
 
                     AllowOfflineAccess=true,

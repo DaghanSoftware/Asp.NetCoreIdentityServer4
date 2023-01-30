@@ -18,6 +18,7 @@ builder.Services.AddAuthentication(options =>
     opts.GetClaimsFromUserInfoEndpoint = true;
     opts.SaveTokens = true;
     opts.Scope.Add("api2.read");
+    opts.Scope.Add("api1.read");
     opts.Scope.Add("offline_access");
 
     opts.Scope.Add("CountryAndCity");

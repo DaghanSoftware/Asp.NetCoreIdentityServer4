@@ -1,10 +1,14 @@
 ﻿using IdentityModel.Client;
 using IdentityServer.Client1.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Newtonsoft.Json;
 
 namespace IdentityServer.Client1.Controllers
 {
+    [Authorize]
     public class ProductsController : Controller
     {
         private readonly IConfiguration _configuration;
@@ -15,26 +19,12 @@ namespace IdentityServer.Client1.Controllers
 
         public async Task<IActionResult> Index()
         {
-            List<Product> products= new List<Product>();
+            List<Product> products = new List<Product>();
 
             HttpClient httpCilent = new HttpClient();
-            var discoveryEndpoint = await httpCilent.GetDiscoveryDocumentAsync("https://localhost:7139");
-            if (discoveryEndpoint.IsError)
-            {
-                //loglama yap
-            }
-            ClientCredentialsTokenRequest clientCredentialsTokenRequest = new ClientCredentialsTokenRequest();
-            clientCredentialsTokenRequest.ClientId = _configuration["Client:ClientId"];
-            clientCredentialsTokenRequest.ClientSecret = _configuration["Client:ClientSecret"];
-            clientCredentialsTokenRequest.Address = discoveryEndpoint.TokenEndpoint;
-            var token = await httpCilent.RequestClientCredentialsTokenAsync(clientCredentialsTokenRequest);
-            if (token.IsError)
-            {
-                //loglama yap
-            }
-            //https://localhost:7218
 
-            httpCilent.SetBearerToken(token.AccessToken);
+            var accessToken = await HttpContext.GetTokenAsync(OpenIdConnectParameterNames.AccessToken);
+            httpCilent.SetBearerToken(accessToken);
             var response = await httpCilent.GetAsync("https://localhost:7014/api/Product/GetProducts");
             if (response.IsSuccessStatusCode)
             {
