@@ -94,6 +94,9 @@ namespace IdentityServer.AuthServer
                     RefreshTokenUsage=TokenUsage.ReUse,
                     RefreshTokenExpiration=TokenExpiration.Absolute,
                     AbsoluteRefreshTokenLifetime=(int)(DateTime.Now.AddDays(60)-DateTime.Now).TotalSeconds,
+
+                    //Onay sayfası
+                    RequireConsent=true
                 }
             };
         }
