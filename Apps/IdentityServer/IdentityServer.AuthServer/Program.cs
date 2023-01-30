@@ -1,8 +1,15 @@
 using IdentityServer.AuthServer;
-
+using IdentityServer.AuthServer.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer;
+using Microsoft.EntityFrameworkCore.Design;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<CustomDbContext>(option =>
+{
+    option.UseSqlServer(Configuration.GetConnectionString("LocalDb"))
+});
 builder.Services.AddIdentityServer()
     .AddInMemoryApiResources(Config.GetApiResources())
     .AddInMemoryApiScopes(Config.GetApiScopes())
