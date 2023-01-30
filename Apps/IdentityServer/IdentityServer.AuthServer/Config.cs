@@ -39,6 +39,7 @@ namespace IdentityServer.AuthServer
                 new IdentityResources.Profile(),
                 new IdentityResource(){Name="CountryAndCity",DisplayName="Country and City",Description="Kullanıcının ülke ve şehir bilgisi",
                     UserClaims=new [] {"country","city"}},
+                new IdentityResource(){Name="Roles",DisplayName="Roles",Description="Kullanıcı Rolleri",UserClaims=new []{"role"} },
             };
         }
 
@@ -51,7 +52,8 @@ namespace IdentityServer.AuthServer
                         new Claim("given_name","Semih"),
                         new Claim("family_name","Daghan"),
                         new Claim("country","Türkiye"),
-                        new Claim("city","İstanbul")
+                        new Claim("city","İstanbul"),
+                        new Claim("role","Admin")
                     }
                 },
                 new TestUser{SubjectId="2",Username="Eldodi",Password="password",Claims=new List<Claim>()
@@ -59,7 +61,8 @@ namespace IdentityServer.AuthServer
                         new Claim("given_name","Sea of"),
                         new Claim("family_name","Thieves"),
                         new Claim("country","Türkiye"),
-                        new Claim("city","Eskişehir")
+                        new Claim("city","Eskişehir"),
+                        new Claim("role","Customer")
                     }
                 }
             };
@@ -94,7 +97,7 @@ namespace IdentityServer.AuthServer
                     RedirectUris=new List<string>{"https://localhost:7218/signin-oidc"},
                     PostLogoutRedirectUris=new List<string>{ "https://localhost:7218/signout-callback-oidc" },
                     AllowedScopes={IdentityServerConstants.StandardScopes.OpenId,IdentityServerConstants.StandardScopes.Profile,
-                        "api1.read",IdentityServerConstants.StandardScopes.OfflineAccess,"CountryAndCity"},
+                        "api1.read",IdentityServerConstants.StandardScopes.OfflineAccess,"CountryAndCity","Roles"},
                     AccessTokenLifetime=2*60*60,
 
                     AllowOfflineAccess=true,
