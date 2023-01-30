@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -17,6 +19,10 @@ builder.Services.AddAuthentication(options =>
     opts.SaveTokens = true;
     opts.Scope.Add("api1.read");
     opts.Scope.Add("offline_access");
+
+    opts.Scope.Add("CountryAndCity");
+    opts.ClaimActions.MapUniqueJsonKey("country", "country");
+    opts.ClaimActions.MapUniqueJsonKey("city", "city");
 });
 builder.Services.AddControllersWithViews();
 
