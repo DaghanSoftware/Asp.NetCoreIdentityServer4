@@ -86,7 +86,12 @@ namespace IdentityServer.AuthServer
                     ClientSecrets=new[] {new Secret("secret".Sha256())},
                     AllowedGrantTypes = GrantTypes.Hybrid,
                     RedirectUris=new List<string>{"https://localhost:7218/signin-oidc"},
-                    AllowedScopes={IdentityServerConstants.StandardScopes.OpenId,IdentityServerConstants.StandardScopes.Profile,"api1.read"}
+                    AllowedScopes={IdentityServerConstants.StandardScopes.OpenId,IdentityServerConstants.StandardScopes.Profile,"api1.read",IdentityServerConstants.StandardScopes.OfflineAccess},
+                    AccessTokenLifetime=DateTime.Now.AddHours(2).Second,
+
+                    AllowOfflineAccess=true,
+                    RefreshTokenUsage=TokenUsage.ReUse,
+                    AbsoluteRefreshTokenLifetime=DateTime.Now.AddDays(60).Second
                 }
             };
         }
