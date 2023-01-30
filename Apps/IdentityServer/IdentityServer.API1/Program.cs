@@ -15,7 +15,7 @@ builder.Services.AddAuthorization(options => {
         });
 
         options.AddPolicy("UpdateOrCreate", policy => {
-            policy.RequireClaim("scope", new[] {"api1.update","api.write"});
+            policy.RequireClaim("scope", new[] {"api1.update","api1.write"});
         });
 
 });
