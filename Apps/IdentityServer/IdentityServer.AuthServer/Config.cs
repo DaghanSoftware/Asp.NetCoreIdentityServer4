@@ -107,6 +107,27 @@ namespace IdentityServer.AuthServer
 
                     //Onay sayfası
                     RequireConsent=true
+                },
+                new Client()
+                {
+                    ClientId="Client2-Mvc",
+                    RequirePkce=false,
+                    ClientName="Client-2 MVC app uygulaması",
+                    ClientSecrets=new[] {new Secret("secret".Sha256())},
+                    AllowedGrantTypes = GrantTypes.Hybrid,
+                    RedirectUris=new List<string>{"https://localhost:7223/signin-oidc"},
+                    PostLogoutRedirectUris=new List<string>{ "https://localhost:7223/signout-callback-oidc" },
+                    AllowedScopes={IdentityServerConstants.StandardScopes.OpenId,IdentityServerConstants.StandardScopes.Profile,
+                        "api2.read",IdentityServerConstants.StandardScopes.OfflineAccess,"CountryAndCity","Roles"},
+                    AccessTokenLifetime=2*60*60,
+
+                    AllowOfflineAccess=true,
+                    RefreshTokenUsage=TokenUsage.ReUse,
+                    RefreshTokenExpiration=TokenExpiration.Absolute,
+                    AbsoluteRefreshTokenLifetime=(int)(DateTime.Now.AddDays(60)-DateTime.Now).TotalSeconds,
+
+                    //Onay sayfası
+                    RequireConsent=true
                 }
             };
         }
