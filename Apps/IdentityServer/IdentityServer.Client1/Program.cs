@@ -8,7 +8,7 @@ builder.Services.AddAuthentication(options =>
     options.DefaultScheme = "Cookies";
     options.DefaultChallengeScheme = "oidc";
 
-}).AddCookie("Cookies").AddOpenIdConnect("oidc", opts =>
+}).AddCookie("Cookies", options => { options.AccessDeniedPath = "/Home/AccessDenied"; }).AddOpenIdConnect("oidc", opts =>
 {
     opts.SignInScheme = "Cookies";
     opts.Authority = "https://localhost:7139";
