@@ -1,8 +1,11 @@
+using IdentityServer.Client1.Services;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = "Cookies";
@@ -33,7 +36,9 @@ builder.Services.AddAuthentication(options =>
 });
 builder.Services.AddControllersWithViews();
 
-var app = builder.Build();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddTransient<IApiResourceHttpClient, ApiResourceHttpClient>();
+ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
