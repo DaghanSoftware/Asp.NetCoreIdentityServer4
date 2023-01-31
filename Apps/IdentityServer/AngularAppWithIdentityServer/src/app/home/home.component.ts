@@ -10,7 +10,7 @@ export class HomeComponent implements OnInit {
 
  constructor(private authService:AuthService){}
 status: string | undefined;
- ngOnInit() {
+ ngOnInit():void {
   this.authService.userManager.getUser().then((user)=>{
     if(user){
       this.status="Hoşgeldiniz";
