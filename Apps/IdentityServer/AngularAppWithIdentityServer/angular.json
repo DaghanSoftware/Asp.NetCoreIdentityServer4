@@ -89,7 +89,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "/node_modules/oidc-client/dist/oidc-client.min.js"
+            ]
           }
         }
       }
