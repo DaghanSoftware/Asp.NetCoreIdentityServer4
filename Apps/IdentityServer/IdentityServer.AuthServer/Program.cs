@@ -5,9 +5,10 @@ using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.EntityFrameworkCore.Design;
 using System.Reflection;
 using System;
+using IdentityServer.AuthServer.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddScoped<ICustomUserRepository, CustomUserRepository>();
 // Add services to the container.
 builder.Services.AddDbContext<CustomDbContext>(x =>
 {
