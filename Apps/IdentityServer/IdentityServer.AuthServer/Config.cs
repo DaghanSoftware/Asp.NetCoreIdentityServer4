@@ -129,6 +129,21 @@ namespace IdentityServer.AuthServer
 
                     //Onay sayfası
                     RequireConsent=true
+                },
+                 new Client()
+                {
+                    ClientId="js-client",
+                    //RequirePkce=true,
+                    RequireClientSecret=false,
+                    AllowedGrantTypes=GrantTypes.Code,
+                    ClientName="SPA Angular uygulaması",
+                    AllowedScopes={IdentityServerConstants.StandardScopes.OpenId,IdentityServerConstants.StandardScopes.Profile,IdentityServerConstants.StandardScopes.Email,
+                        "api1.read",IdentityServerConstants.StandardScopes.OfflineAccess,"CountryAndCity","Roles"},
+                    AccessTokenLifetime=2*60*60,
+                    RedirectUris={"http://localhost:4200/callback"},
+                    AllowedCorsOrigins={"http://localhost:4200"},
+                    PostLogoutRedirectUris={ "http://localhost:4200" }
+
                 }
             };
         }
