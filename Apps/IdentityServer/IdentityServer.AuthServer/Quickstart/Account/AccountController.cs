@@ -1,7 +1,3 @@
-// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
-
-
 using IdentityModel;
 using IdentityServer.AuthServer.Repository;
 using IdentityServer4;
@@ -113,8 +109,8 @@ namespace IdentityServerHost.Quickstart.UI
                 // validate username/password against in-memory store
                 if ( await _customUserRepository.Validate(model.Email,model.Password))
                 {
-                    var user = _customUserRepository.FindByEmail(model.Email);
-                    await _events.RaiseAsync(new UserLoginSuccessEvent(user.Result.UserName, user.Id.ToString(), user.Result.UserName, clientId: context?.Client.ClientId));
+                    var user =await _customUserRepository.FindByEmail(model.Email);
+                    await _events.RaiseAsync(new UserLoginSuccessEvent(user.UserName, user.Id.ToString(), user.UserName, clientId: context?.Client.ClientId));
 
                     // only set explicit expiration here if user chooses "remember me". 
                     // otherwise we rely upon expiration configured in cookie middleware.
@@ -131,7 +127,7 @@ namespace IdentityServerHost.Quickstart.UI
                     // issue authentication cookie with subject ID and username
                     var isuser = new IdentityServerUser(user.Id.ToString())
                     {
-                        DisplayName = user.Result.UserName
+                        DisplayName = user.UserName
                     };
 
                     await HttpContext.SignInAsync(isuser, props);

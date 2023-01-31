@@ -14,8 +14,7 @@ namespace IdentityServer.AuthServer.Repository
 
         public async Task<CustomUser> FindByEmail(string email)
         {
-            var userMail = await _context.CustomUsers.FirstOrDefaultAsync(x => x.Email == email);
-            return userMail;
+            return await _context.CustomUsers.FirstOrDefaultAsync(x => x.Email == email);
         }
 
         public async Task<CustomUser> FindById(int id)

@@ -1,11 +1,7 @@
 using IdentityServer.AuthServer;
 using IdentityServer.AuthServer.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer;
-using Microsoft.EntityFrameworkCore.Design;
-using System.Reflection;
-using System;
 using IdentityServer.AuthServer.Repository;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<ICustomUserRepository, CustomUserRepository>();
