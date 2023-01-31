@@ -37,6 +37,7 @@ namespace IdentityServer.AuthServer
             {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
+                new IdentityResources.Email(),
                 new IdentityResource(){Name="CountryAndCity",DisplayName="Country and City",Description="Kullanıcının ülke ve şehir bilgisi",
                     UserClaims=new [] {"country","city"}},
                 new IdentityResource(){Name="Roles",DisplayName="Roles",Description="Kullanıcı Rolleri",UserClaims=new []{"role"} },
@@ -96,7 +97,7 @@ namespace IdentityServer.AuthServer
                     AllowedGrantTypes = GrantTypes.Hybrid,
                     RedirectUris=new List<string>{"https://localhost:7218/signin-oidc"},
                     PostLogoutRedirectUris=new List<string>{ "https://localhost:7218/signout-callback-oidc" },
-                    AllowedScopes={IdentityServerConstants.StandardScopes.OpenId,IdentityServerConstants.StandardScopes.Profile,
+                    AllowedScopes={IdentityServerConstants.StandardScopes.OpenId,IdentityServerConstants.StandardScopes.Profile,IdentityServerConstants.StandardScopes.Email,
                         "api1.read",IdentityServerConstants.StandardScopes.OfflineAccess,"CountryAndCity","Roles"},
                     AccessTokenLifetime=2*60*60,
 
@@ -117,7 +118,7 @@ namespace IdentityServer.AuthServer
                     AllowedGrantTypes = GrantTypes.Hybrid,
                     RedirectUris=new List<string>{"https://localhost:7223/signin-oidc"},
                     PostLogoutRedirectUris=new List<string>{ "https://localhost:7223/signout-callback-oidc" },
-                    AllowedScopes={IdentityServerConstants.StandardScopes.OpenId,IdentityServerConstants.StandardScopes.Profile,
+                    AllowedScopes={IdentityServerConstants.StandardScopes.OpenId,IdentityServerConstants.StandardScopes.Profile,IdentityServerConstants.StandardScopes.Email,
                         "api1.read","api2.read",IdentityServerConstants.StandardScopes.OfflineAccess,"CountryAndCity","Roles"},
                     AccessTokenLifetime=2*60*60,
 

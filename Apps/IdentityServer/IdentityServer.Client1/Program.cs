@@ -22,6 +22,7 @@ builder.Services.AddAuthentication(options =>
     opts.SaveTokens = true;
     opts.Scope.Add("api1.read");
     opts.Scope.Add("offline_access");
+    opts.Scope.Add("email");
 
     opts.Scope.Add("CountryAndCity");
     opts.ClaimActions.MapUniqueJsonKey("country", "country");
@@ -31,7 +32,8 @@ builder.Services.AddAuthentication(options =>
     opts.ClaimActions.MapUniqueJsonKey("role", "role");
     opts.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
     {
-        RoleClaimType="role"
+        RoleClaimType="role",
+        NameClaimType="name",
     };
 });
 builder.Services.AddControllersWithViews();
