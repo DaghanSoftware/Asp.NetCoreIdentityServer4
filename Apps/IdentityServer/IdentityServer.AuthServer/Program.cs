@@ -1,7 +1,9 @@
 using IdentityServer.AuthServer;
 using IdentityServer.AuthServer.Models;
 using IdentityServer.AuthServer.Repository;
+using IdentityServer.AuthServer.Seeds;
 using IdentityServer.AuthServer.Services;
+using IdentityServer4.EntityFramework.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -46,7 +48,12 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
+using (var serviceScope = app.Services.CreateScope())
+{
+    var services = serviceScope.ServiceProvider;
+    var context = services.GetRequiredService<ConfigurationDbContext>();
+    IdentityServerSeedData.Seed(context);
+}
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
