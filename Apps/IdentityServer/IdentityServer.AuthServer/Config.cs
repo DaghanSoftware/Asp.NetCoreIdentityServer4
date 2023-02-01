@@ -133,10 +133,10 @@ namespace IdentityServer.AuthServer
                  new Client()
                 {
                     ClientId="js-client",
-                    //RequirePkce=true,
-                    RequireClientSecret=false,
-                    AllowedGrantTypes=GrantTypes.Code,
                     ClientName="SPA Angular uygulaması",
+                    RequireClientSecret=false,
+                    RequirePkce=true,
+                    AllowedGrantTypes=GrantTypes.Code,
                     AllowedScopes={IdentityServerConstants.StandardScopes.OpenId,IdentityServerConstants.StandardScopes.Profile,IdentityServerConstants.StandardScopes.Email,
                         "api1.read",IdentityServerConstants.StandardScopes.OfflineAccess,"CountryAndCity","Roles"},
                     AccessTokenLifetime=2*60*60,
