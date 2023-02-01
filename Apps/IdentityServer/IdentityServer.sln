@@ -18,7 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Ports.txt = Ports.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client1ResourceOwner", "Client1-ResourceOwner\Client1ResourceOwner.csproj", "{FD7FB581-146C-49AE-827B-15E0A8BC3BAA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.Client1ResourceOwner", "Client1-ResourceOwner\IdentityServer.Client1ResourceOwner.csproj", "{FD7FB581-146C-49AE-827B-15E0A8BC3BAA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
