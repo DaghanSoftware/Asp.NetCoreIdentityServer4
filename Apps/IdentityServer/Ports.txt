@@ -1,5 +1,6 @@
 AuthServer -> https://localhost:7139  , http://localhost:5109/
 Client1 -> https://localhost:7218
+ClientResourceOwner -> https://localhost:7199/
 Client2 -> https://localhost:7223
 API1 -> https://localhost:7014
 API2 -> https://localhost:7166

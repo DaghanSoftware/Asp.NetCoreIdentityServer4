@@ -3,20 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.Client1", "IdentityServer.Client1\IdentityServer.Client1.csproj", "{B352B03D-65A6-428C-92C7-688D125C20AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.Client1", "IdentityServer.Client1\IdentityServer.Client1.csproj", "{B352B03D-65A6-428C-92C7-688D125C20AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.AuthServer", "IdentityServer.AuthServer\IdentityServer.AuthServer.csproj", "{5F42E0D5-8B20-4243-BD37-B21E76ACE56E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.AuthServer", "IdentityServer.AuthServer\IdentityServer.AuthServer.csproj", "{5F42E0D5-8B20-4243-BD37-B21E76ACE56E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.Client2", "IdentityServer.Client2\IdentityServer.Client2.csproj", "{A8C5582D-3099-4B40-B23F-281F44D67192}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.Client2", "IdentityServer.Client2\IdentityServer.Client2.csproj", "{A8C5582D-3099-4B40-B23F-281F44D67192}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.API1", "IdentityServer.API1\IdentityServer.API1.csproj", "{A3867882-4AA4-49CA-B3CF-06F900BF0753}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.API1", "IdentityServer.API1\IdentityServer.API1.csproj", "{A3867882-4AA4-49CA-B3CF-06F900BF0753}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer.API2", "IdentityServer.API2\IdentityServer.API2.csproj", "{DD2E04AA-EEBC-4519-B6F8-BC17DC95EF93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.API2", "IdentityServer.API2\IdentityServer.API2.csproj", "{DD2E04AA-EEBC-4519-B6F8-BC17DC95EF93}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{01DABBD6-448D-43A9-8A2E-CDAD45155192}"
 	ProjectSection(SolutionItems) = preProject
 		Ports.txt = Ports.txt
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client1ResourceOwner", "Client1-ResourceOwner\Client1ResourceOwner.csproj", "{FD7FB581-146C-49AE-827B-15E0A8BC3BAA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +46,10 @@ Global
 		{DD2E04AA-EEBC-4519-B6F8-BC17DC95EF93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD2E04AA-EEBC-4519-B6F8-BC17DC95EF93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD2E04AA-EEBC-4519-B6F8-BC17DC95EF93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD7FB581-146C-49AE-827B-15E0A8BC3BAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD7FB581-146C-49AE-827B-15E0A8BC3BAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD7FB581-146C-49AE-827B-15E0A8BC3BAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD7FB581-146C-49AE-827B-15E0A8BC3BAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
