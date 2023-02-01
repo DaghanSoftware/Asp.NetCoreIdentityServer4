@@ -18,7 +18,9 @@ builder.Services.AddIdentityServer()
     .AddInMemoryIdentityResources(Config.GetIdentityResources())
     //.AddTestUsers(Config.GetTestUsers().ToList())
     .AddDeveloperSigningCredential()
-    .AddProfileService<CustomProfileService>();
+    .AddProfileService<CustomProfileService>()
+    .AddResourceOwnerValidator<ResourceOwnerPasswordValidator>();
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
