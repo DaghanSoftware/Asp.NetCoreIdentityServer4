@@ -45,7 +45,8 @@ namespace Client1_ResourceOwner.Controllers
             var token = await client.RequestPasswordTokenAsync(password);
             if (token.IsError)
             {
-                //hata yakalama ve loglama
+                ModelState.AddModelError("","Email veya şifreniz yanlış");
+                return View();
             }
 
             //Elde edilen token’da ki access token değeri ile kullanıcı bilgileri talep edilmektedir.
