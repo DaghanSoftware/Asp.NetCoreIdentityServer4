@@ -18,6 +18,7 @@ namespace IdentityServer.AuthServer.Services
 
         public async Task GetProfileDataAsync(ProfileDataRequestContext context)
         {
+            //Subject Id değerini getirir.
             var subId = context.Subject.GetSubjectId();
 
             var user = await _customUserRepository.FindById(int.Parse(subId));
@@ -37,8 +38,9 @@ namespace IdentityServer.AuthServer.Services
             {
                 claims.Add(new Claim("role", "Customer"));
             }
-
+            ////Userinfo Token
             context.AddRequestedClaims(claims);
+
             // jwt içinde görmek istiyorsanız aşağıdaki property'i set et
             //   context.IssuedClaims = claims;
         }
