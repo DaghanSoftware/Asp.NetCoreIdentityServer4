@@ -3,6 +3,7 @@ using IdentityServer.AuthServer.Models;
 using IdentityServer.AuthServer.Repository;
 using IdentityServer.AuthServer.Services;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<ICustomUserRepository, CustomUserRepository>();
@@ -11,7 +12,20 @@ builder.Services.AddDbContext<CustomDbContext>(x =>
 {
     x.UseSqlServer(builder.Configuration.GetConnectionString("LocalDb"));
 });
+var assemblyName = typeof(Program).GetTypeInfo().Assembly.GetName().Name;
 builder.Services.AddIdentityServer()
+    //AddConfigurationStore fonksiyonu ile ‘ConfigurationDbContext’in konfigürasyonu
+    .AddConfigurationStore(opts => 
+    {
+        opts.ConfigureDbContext = c => c.UseSqlServer(builder.Configuration.GetConnectionString("LocalDb"),sqlOpts=>
+        sqlOpts.MigrationsAssembly(assemblyName));
+    })
+    //‘AddOperationalStore’ fonksiyonu ile ise ‘PersistedGrantDbContext’ konfigürasyonu
+    .AddOperationalStore(opts =>
+    {
+        opts.ConfigureDbContext = c => c.UseSqlServer(builder.Configuration.GetConnectionString("LocalDb"), sqlOpts =>
+        sqlOpts.MigrationsAssembly(assemblyName));
+    })
     .AddInMemoryApiResources(Config.GetApiResources())
     .AddInMemoryApiScopes(Config.GetApiScopes())
     .AddInMemoryClients(Config.GetClients())
