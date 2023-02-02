@@ -1,9 +1,12 @@
+﻿
 using IdentityServer.AuthServer;
 using IdentityServer.AuthServer.Models;
 using IdentityServer.AuthServer.Repository;
 using IdentityServer.AuthServer.Seeds;
 using IdentityServer.AuthServer.Services;
 using IdentityServer4.EntityFramework.DbContexts;
+using IdentityServer4.EntityFramework.Mappers;
+using IdentityServer4.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -16,13 +19,13 @@ builder.Services.AddDbContext<CustomDbContext>(x =>
 });
 var assemblyName = typeof(Program).GetTypeInfo().Assembly.GetName().Name;
 builder.Services.AddIdentityServer()
-    //AddConfigurationStore fonksiyonu ile �ConfigurationDbContext�in konfig�rasyonu
+    //AddConfigurationStore fonksiyonu ile ‘ConfigurationDbContext’in konfigürasyonu
     .AddConfigurationStore(opts => 
     {
         opts.ConfigureDbContext = c => c.UseSqlServer(builder.Configuration.GetConnectionString("LocalDb"),sqlOpts=>
         sqlOpts.MigrationsAssembly(assemblyName));
     })
-    //�AddOperationalStore� fonksiyonu ile ise �PersistedGrantDbContext� konfig�rasyonu
+    //‘AddOperationalStore’ fonksiyonu ile ise ‘PersistedGrantDbContext’ konfigürasyonu
     .AddOperationalStore(opts =>
     {
         opts.ConfigureDbContext = c => c.UseSqlServer(builder.Configuration.GetConnectionString("LocalDb"), sqlOpts =>
@@ -48,12 +51,13 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-using (var serviceScope = app.Services.CreateScope())
-{
-    var services = serviceScope.ServiceProvider;
-    var context = services.GetRequiredService<ConfigurationDbContext>();
-    IdentityServerSeedData.Seed(context);
-}
+//Migration çalışmadığı için yorum satırını aldım
+//using (var serviceScope = app.Services.CreateScope())
+//{
+//    var services = serviceScope.ServiceProvider;
+//    var context = services.GetRequiredService<ConfigurationDbContext>();
+//    IdentityServerSeedData.Seed(context);
+//}
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
