@@ -22,22 +22,22 @@ builder.Services.AddDbContext<CustomDbContext>(x =>
 
 var assemblyName = typeof(Program).GetTypeInfo().Assembly.GetName().Name;
 builder.Services.AddIdentityServer()
-    //AddConfigurationStore fonksiyonu ile ‘ConfigurationDbContext’in konfigürasyonu
-    .AddConfigurationStore(opts => 
-    {
-        opts.ConfigureDbContext = c => c.UseSqlServer(builder.Configuration.GetConnectionString("LocalDb"),sqlOpts=>
-        sqlOpts.MigrationsAssembly(assemblyName));
-    })
-    //‘AddOperationalStore’ fonksiyonu ile ise ‘PersistedGrantDbContext’ konfigürasyonu
-    .AddOperationalStore(opts =>
-    {
-        opts.ConfigureDbContext = c => c.UseSqlServer(builder.Configuration.GetConnectionString("LocalDb"), sqlOpts =>
-        sqlOpts.MigrationsAssembly(assemblyName));
-    })
-    //.AddInMemoryApiResources(Config.GetApiResources())
-    //.AddInMemoryApiScopes(Config.GetApiScopes())
-    //.AddInMemoryClients(Config.GetClients())
-    //.AddInMemoryIdentityResources(Config.GetIdentityResources())
+    ////AddConfigurationStore fonksiyonu ile ‘ConfigurationDbContext’in konfigürasyonu
+    //.AddConfigurationStore(opts => 
+    //{
+    //    opts.ConfigureDbContext = c => c.UseSqlServer(builder.Configuration.GetConnectionString("LocalDb"),sqlOpts=>
+    //    sqlOpts.MigrationsAssembly(assemblyName));
+    //})
+    ////‘AddOperationalStore’ fonksiyonu ile ise ‘PersistedGrantDbContext’ konfigürasyonu
+    //.AddOperationalStore(opts =>
+    //{
+    //    opts.ConfigureDbContext = c => c.UseSqlServer(builder.Configuration.GetConnectionString("LocalDb"), sqlOpts =>
+    //    sqlOpts.MigrationsAssembly(assemblyName));
+    //})
+    .AddInMemoryApiResources(Config.GetApiResources())
+    .AddInMemoryApiScopes(Config.GetApiScopes())
+    .AddInMemoryClients(Config.GetClients())
+    .AddInMemoryIdentityResources(Config.GetIdentityResources())
     //.AddTestUsers(Config.GetTestUsers().ToList())
     .AddDeveloperSigningCredential()
     .AddProfileService<CustomProfileService>()

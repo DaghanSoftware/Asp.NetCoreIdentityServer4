@@ -45,8 +45,8 @@ namespace IdentityServer.Client1ResourceOwner.Controllers
             //Refresh token ile request yapabilmemiz için ilgili client’ın bilgilerini tutan nesne oluşturulmuştur. Burada dikkat ederseniz kullanıcının username ve password bilgileri girilmemektedir.
             //Bunun nedeni, ilgili dataların cookie’de tutuluyor ve talep neticesinde IdentityServer4’e gönderiliyor olmasıdır.
             RefreshTokenRequest refreshTokenRequest = new RefreshTokenRequest();
-            refreshTokenRequest.ClientId = _configuration["Client1Mvc:ClientId"];
-            refreshTokenRequest.ClientSecret = _configuration["Client1Mvc:ClientSecret"];
+            refreshTokenRequest.ClientId = _configuration["Client1ResourceOwnerMvc:ClientId"];
+            refreshTokenRequest.ClientSecret = _configuration["Client1ResourceOwnerMvc:ClientSecret"];
             refreshTokenRequest.RefreshToken = refreshToken;
             refreshTokenRequest.Address = discoveryEndpoint.TokenEndpoint;
 
