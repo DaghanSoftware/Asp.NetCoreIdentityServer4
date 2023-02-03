@@ -11,12 +11,15 @@ using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddScoped<ICustomUserRepository, CustomUserRepository>();
+
 // Add services to the container.
 builder.Services.AddDbContext<CustomDbContext>(x =>
 {
     x.UseSqlServer(builder.Configuration.GetConnectionString("LocalDb"));
 });
+
 var assemblyName = typeof(Program).GetTypeInfo().Assembly.GetName().Name;
 builder.Services.AddIdentityServer()
     //AddConfigurationStore fonksiyonu ile ‘ConfigurationDbContext’in konfigürasyonu
@@ -31,10 +34,10 @@ builder.Services.AddIdentityServer()
         opts.ConfigureDbContext = c => c.UseSqlServer(builder.Configuration.GetConnectionString("LocalDb"), sqlOpts =>
         sqlOpts.MigrationsAssembly(assemblyName));
     })
-    .AddInMemoryApiResources(Config.GetApiResources())
-    .AddInMemoryApiScopes(Config.GetApiScopes())
-    .AddInMemoryClients(Config.GetClients())
-    .AddInMemoryIdentityResources(Config.GetIdentityResources())
+    //.AddInMemoryApiResources(Config.GetApiResources())
+    //.AddInMemoryApiScopes(Config.GetApiScopes())
+    //.AddInMemoryClients(Config.GetClients())
+    //.AddInMemoryIdentityResources(Config.GetIdentityResources())
     //.AddTestUsers(Config.GetTestUsers().ToList())
     .AddDeveloperSigningCredential()
     .AddProfileService<CustomProfileService>()
@@ -51,13 +54,7 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-//Migration çalışmadığı için yorum satırını aldım
-//using (var serviceScope = app.Services.CreateScope())
-//{
-//    var services = serviceScope.ServiceProvider;
-//    var context = services.GetRequiredService<ConfigurationDbContext>();
-//    IdentityServerSeedData.Seed(context);
-//}
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -68,5 +65,11 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
+//Migration çalışmadığı için yorum satırını aldım
+//using (var serviceScope = app.Services.CreateScope())
+//{
+//    var services = serviceScope.ServiceProvider;
+//    var context = services.GetRequiredService<ConfigurationDbContext>();
+//    IdentityServerSeedData.Seed(context);
+//}
 app.Run();
