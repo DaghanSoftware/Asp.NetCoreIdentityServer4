@@ -16,7 +16,8 @@ namespace IdentityServer.IdentityApi_AuthServer
             return new List<ApiResource>
             {
                 new ApiResource("resource_api1"){Scopes={"api1.read","api1.write","api1.update"},ApiSecrets=new[]{ new Secret("secretapi1".Sha256())}},
-                new ApiResource("resource_api2"){Scopes={"api2.read","api2.write","api2.update"},ApiSecrets=new[]{ new Secret("secretapi2".Sha256())}}
+                new ApiResource("resource_api2"){Scopes={"api2.read","api2.write","api2.update"},ApiSecrets=new[]{ new Secret("secretapi2".Sha256())}},
+                new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
             };
         }
 
@@ -30,7 +31,9 @@ namespace IdentityServer.IdentityApi_AuthServer
 
                 new ApiScope("api2.read","Api 2 için okuma izni"),
                 new ApiScope("api2.write","Api 2 için yazma izni"),
-                new ApiScope("api2.update","Api 2 için update izni")
+                new ApiScope("api2.update","Api 2 için update izni"),
+
+                new ApiScope(IdentityServerConstants.LocalApi.ScopeName)
             };
         }
 
@@ -130,9 +133,9 @@ namespace IdentityServer.IdentityApi_AuthServer
                     ClientId="Client1-ResourceOwner-Mvc",
                     ClientName="Client1-ResourceOwner-Mvc MVC app uygulaması",
                     ClientSecrets=new[] {new Secret("secret".Sha256())},
-                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
                     AllowedScopes={IdentityServerConstants.StandardScopes.OpenId,IdentityServerConstants.StandardScopes.Profile,IdentityServerConstants.StandardScopes.Email,
-                        "api1.read",IdentityServerConstants.StandardScopes.OfflineAccess,"CountryAndCity","Roles"},
+                        "api1.read",IdentityServerConstants.StandardScopes.OfflineAccess,"CountryAndCity","Roles",IdentityServerConstants.LocalApi.ScopeName},
                     AccessTokenLifetime=2*60*60,
 
                     AllowOfflineAccess=true,

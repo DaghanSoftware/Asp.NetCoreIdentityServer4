@@ -4,3 +4,4 @@ ClientResourceOwner -> https://localhost:7199/
 Client2 -> https://localhost:7223
 API1 -> https://localhost:7014
 API2 -> https://localhost:7166
+IdentityApi-AuthServer = https://localhost:7134 , https://localhost:5001/
