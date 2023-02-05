@@ -4,6 +4,7 @@
 
 using IdentityServer.IdentityApi_AuthServer.Data;
 using IdentityServer.IdentityApi_AuthServer.Models;
+using IdentityServer.IdentityApiAuthServer.Services;
 using IdentityServer4;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -50,7 +51,8 @@ namespace IdentityServer.IdentityApi_AuthServer
                 .AddInMemoryApiScopes(Config.GetApiScopes())
                 .AddInMemoryApiResources(Config.GetApiResources())
                 .AddInMemoryClients(Config.GetClients())
-                .AddAspNetIdentity<ApplicationUser>();
+                .AddAspNetIdentity<ApplicationUser>()
+                .AddResourceOwnerValidator<IdentityResourceOwnerPasswordValidator>();
 
             // not recommended for production - you need to store your key material somewhere secure
             builder.AddDeveloperSigningCredential();
